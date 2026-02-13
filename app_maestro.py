@@ -20,21 +20,21 @@ import time
 from pathlib import Path
 import json
 
-# Importar extractor maestro
-try:
-     from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
-     from app import cargar_memoria, guardar_memoria
- except ImportError as e:
-     st.error(f"❌ Error importando módulos: {e}")
-     st.stop()
-
-# --- CONFIGURACIÓN DE MÓDULOS ---
+# 1. IMPORTACIÓN DE MÓDULOS (Limpia y alineada)
 try:
     from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
     from app import cargar_memoria, guardar_memoria
 except ImportError as e:
     st.error(f"❌ Error importando módulos: {e}")
     st.stop()
+
+# 2. CONFIGURACIÓN DE PÁGINA (Solo una vez)
+st.set_page_config(
+    page_title="⚡ DOCUX AI - Extracción Inteligente de Documentos",
+    page_icon="⚡",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # NO ESCRIBAS NADA AQUÍ. 
 # Borra las funciones def extraer_documento, cargar_memoria y la clase ExtractorMaestro que estaban aquí.
@@ -2776,6 +2776,7 @@ with tab4:
 #     </div>
 # </div>
 # """, unsafe_allow_html=True)
+
 
 
 
