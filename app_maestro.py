@@ -47,14 +47,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Configuración de página
-st.set_page_config(
-    page_title="⚡ DOCUX AI - Extracción Inteligente de Documentos",
-    page_icon="⚡",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
 # Estilos CSS personalizados ultra-modernos - DARK THEME PREMIUM
 st.markdown("""
 <style>
@@ -2776,6 +2768,7 @@ with tab4:
 #     </div>
 # </div>
 # """, unsafe_allow_html=True)
+
 
 
 
