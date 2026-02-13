@@ -20,13 +20,13 @@ import time
 from pathlib import Path
 import json
 
-# Importar extractor maestro
-# try:
-    # from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
-    # from app import cargar_memoria, guardar_memoria
-# except ImportError as e:
-    # st.error(f"❌ Error importando módulos: {e}")
-    # st.stop()
+ Importar extractor maestro
+ try:
+     from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
+     from app import cargar_memoria, guardar_memoria
+ except ImportError as e:
+     st.error(f"❌ Error importando módulos: {e}")
+     st.stop()
 
 def extraer_documento(*args, **kwargs):
     return None
@@ -2767,4 +2767,5 @@ with tab4:
 #     </div>
 # </div>
 # """, unsafe_allow_html=True)
+
 
