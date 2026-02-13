@@ -28,15 +28,24 @@ try:
      st.error(f"❌ Error importando módulos: {e}")
      st.stop()
 
-def extraer_documento(*args, **kwargs):
-    return None
+# --- CONFIGURACIÓN DE MÓDULOS ---
+try:
+    from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
+    from app import cargar_memoria, guardar_memoria
+except ImportError as e:
+    st.error(f"❌ Error importando módulos: {e}")
+    st.stop()
 
-def cargar_memoria():
-    return {}
+# NO ESCRIBAS NADA AQUÍ. 
+# Borra las funciones def extraer_documento, cargar_memoria y la clase ExtractorMaestro que estaban aquí.
 
-class ExtractorMaestro:
-    def __init__(self, *args, **kwargs):
-        pass
+# Configuración de página
+st.set_page_config(
+    page_title="⚡ DOCUX AI - Extracción Inteligente de Documentos",
+    page_icon="⚡",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # Configuración de página
 st.set_page_config(
@@ -2767,6 +2776,7 @@ with tab4:
 #     </div>
 # </div>
 # """, unsafe_allow_html=True)
+
 
 
 
