@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 import json
 
-Importar extractor maestro
+# Importar extractor maestro
  try:
      from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
      from app import cargar_memoria, guardar_memoria
@@ -2767,6 +2767,7 @@ with tab4:
 #     </div>
 # </div>
 # """, unsafe_allow_html=True)
+
 
 
 
