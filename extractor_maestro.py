@@ -47,12 +47,26 @@ except ImportError as e:
 # Importar Azure (opcional)
 AZURE_DISPONIBLE = False
 try:
-    from config import AZURE_ENDPOINT, AZURE_KEY
     from azure.core.credentials import AzureKeyCredential
     from azure.ai.formrecognizer import DocumentAnalysisClient
-    AZURE_DISPONIBLE = True
-except ImportError:
-    print("ℹ️  Azure Document Intelligence no disponible (falta instalación o config.py)")
+    
+    # Intentar sacar las llaves de los Secrets de Streamlit
+    if "AZURE_ENDPOINT" in st.secrets:
+        AZURE_ENDPOINT = st.secrets["AZURE_ENDPOINT"]
+        AZURE_KEY = st.secrets["AZURE_KEY"]
+        AZURE_DISPONIBLE = True
+        print("✅ Azure conectado mediante Streamlit Secrets")
+    else:
+        # Si no hay secrets, intenta el método viejo (por si acaso estás en local)
+        try:
+            from config import AZURE_ENDPOINT, AZURE_KEY
+            AZURE_DISPONIBLE = True
+        except:
+            AZURE_DISPONIBLE = False
+
+except Exception as e:
+    print(f"ℹ️ Azure no disponible: {e}")
+    AZURE_DISPONIBLE = False
 
 
 class ExtractorMaestro:
@@ -471,5 +485,6 @@ if __name__ == "__main__":
     print("Para comparar métodos, usar:")
     print("   resultados = extraer_documento('imagen.jpg', comparar=True)")
     print("   exportar_comparacion_excel(resultados)")
+
 
 
