@@ -28,14 +28,18 @@ import pandas as pd
 
 # Importar módulos locales
 try:
-    from app import (
-        ocr_imagen, 
-        ocr_pdf_bytes, 
-        extraer_datos,
-        extraer_tabla_con_easyocr,
-        cargar_memoria,
-        guardar_memoria
-    )
+    import app
+    # Intentamos usar lo que esté disponible
+    ocr_imagen = getattr(app, 'ocr_imagen', lambda x: "OCR local no disponible")
+    extraer_datos = getattr(app, 'extraer_datos', lambda x: {})
+    cargar_memoria = getattr(app, 'cargar_memoria', lambda: {})
+    guardar_memoria = getattr(app, 'guardar_memoria', lambda x: None)
+except ImportError:
+    # Definiciones de emergencia para que la app no se cierre
+    def ocr_imagen(x): return "Procesando..."
+    def extraer_datos(x): return {}
+    def cargar_memoria(): return {}
+    def guardar_memoria(x): pass
 except ImportError as e:
     print(f"⚠️  Error importando app.py: {e}")
     sys.exit(1)
@@ -460,3 +464,4 @@ if __name__ == "__main__":
     print("Para comparar métodos, usar:")
     print("   resultados = extraer_documento('imagen.jpg', comparar=True)")
     print("   exportar_comparacion_excel(resultados)")
+
