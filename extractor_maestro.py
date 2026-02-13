@@ -159,17 +159,24 @@ class ExtractorMaestro:
         inicio = time.time()
         
         try:
-            # Convertir imagen a bytes
-            img_byte_arr = BytesIO()
+            # Convertir la imagen PIL a bytes para enviarla a Azure
+            img_byte_arr = io.BytesIO()
             imagen.save(img_byte_arr, format='PNG')
-            img_byte_arr.seek(0)
+            img_bytes = img_byte_arr.getvalue()
+
+            # Usar las credenciales de los Secretos de Streamlit
+            # Esto reemplaza cualquier configuración local previa
+            endpoint = st.secrets["AZURE_ENDPOINT"]
+            key = st.secrets["AZURE_KEY"]
             
-            # Analizar documento
+            # Llamar al servicio de Azure
             poller = self.azure_client.begin_analyze_document(
-                "prebuilt-layout", 
-                document=img_byte_arr
+                "prebuilt-invoice",  # O el modelo que prefieras usar
+                document=img_bytes
             )
             result = poller.result()
+            
+            # ... (aquí sigue tu lógica para procesar 'result')
             
             # Extraer datos
             datos = {"_metodo": "Azure Document Intelligence"}
@@ -464,4 +471,5 @@ if __name__ == "__main__":
     print("Para comparar métodos, usar:")
     print("   resultados = extraer_documento('imagen.jpg', comparar=True)")
     print("   exportar_comparacion_excel(resultados)")
+
 
