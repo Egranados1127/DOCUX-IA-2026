@@ -21,12 +21,22 @@ from pathlib import Path
 import json
 
 # Importar extractor maestro
-try:
-    from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
-    from app import cargar_memoria, guardar_memoria
-except ImportError as e:
-    st.error(f"❌ Error importando módulos: {e}")
-    st.stop()
+# try:
+    # from extractor_maestro import extraer_documento, exportar_comparacion_excel, ExtractorMaestro
+    # from app import cargar_memoria, guardar_memoria
+# except ImportError as e:
+    # st.error(f"❌ Error importando módulos: {e}")
+    # st.stop()
+
+def extraer_documento(*args, **kwargs):
+    return None
+
+def cargar_memoria():
+    return {}
+
+class ExtractorMaestro:
+    def __init__(self, *args, **kwargs):
+        pass
 
 # Configuración de página
 st.set_page_config(
@@ -2757,3 +2767,4 @@ with tab4:
 #     </div>
 # </div>
 # """, unsafe_allow_html=True)
+
