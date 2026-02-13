@@ -6,3 +6,5 @@ Pillow>=10.0.0
 thefuzz>=0.22.0
 pydantic>=2.5.0
 img2table>=1.2.0
+openpyxl
+pandas
